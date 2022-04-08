@@ -1,0 +1,59 @@
+.tile {
+	width: 2em;
+	height: 2em;
+	border: 2px solid #939393;
+	display: grid;
+	place-items: center;
+    font-weight: bold;
+	grid-column: span 2;
+}
+
+.tile:not(:empty) {
+	border-color: #ffffff;
+}
+
+.tile.flipped {
+	transition: transform 1ms ease-in;
+	transform: rotateX(90deg);
+}
+
+.tile.yellow {
+	background-color: var(--darkendYellow);
+	border: none;
+}
+
+.tile.green {
+	background-color: var(--darkendGreen);
+	border: none;
+}
+
+.tile.gray {
+	background-color: #313131;
+	border: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.tile {
+		transition: transform 250ms ease-out;
+	}
+	.tile:not(:empty) {
+		animation: popTile 100ms ease;
+	}
+	.tile.flipped {
+		transition: transform 250ms ease-in;
+	}
+}
+
+@keyframes popTile {
+	0% {
+		transform: scale(0.6);
+		opacity: 0;
+	}
+	40% {
+		transform: scale(1.1);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+	}
+}

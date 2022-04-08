@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useMemo, useState } from "react";
+import "./App.scss";
+import Tile from "./components/Tile";
+import { TileState } from "./utils/types/TileState";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [temp, setTemp] = useState<number>(0);
+	const [letter, setLetter] = useState<string>("");
+
+	const state = useMemo((): TileState | undefined => {
+		switch (temp) {
+			case 1:
+				return "yellow";
+			case 3:
+				return "green";
+			case 5:
+				return "gray";
+			default:
+				return undefined;
+		}
+	}, [temp]);
+
+	return (
+		<div className="App">
+			<Tile letter={letter} state={state} />
+			<button onClick={() => setTemp((temp + 1) % 6)}>Flip</button>
+			<button onClick={() => setLetter(letter.length > 0 ? "" : "A")}>Set</button>
+		</div>
+	);
 }
 
 export default App;
