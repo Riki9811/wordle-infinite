@@ -95,7 +95,7 @@ If you manage to guess the whole word in amount of attempts given you win, other
 
 ## Roadmap
 
--   [ ] Routing to different game modes
+-   [x] Routing to different game modes
 -   [ ] Main Interface (top-bar, gameboard, digital-keyboard)
 -   [ ] Word check algorithm
 -   [ ] Main game loop for each game mode
